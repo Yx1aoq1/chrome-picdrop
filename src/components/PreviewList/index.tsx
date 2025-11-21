@@ -16,7 +16,7 @@ export interface PreviewListProps {
 
 export function PreviewList({
   data,
-  size = "100px",
+  size = "75px",
   onDelete
 }: PreviewListProps) {
   const [current, setCurrent] = useState(0)
