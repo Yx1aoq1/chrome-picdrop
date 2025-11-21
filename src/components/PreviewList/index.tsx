@@ -56,11 +56,9 @@ export function PreviewList({
         }
       }}>
       <div
+        className="grid gap-4 p-1"
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(auto-fill, minmax(${size}, 1fr))`,
-          gap: 16,
-          padding: 4
+          gridTemplateColumns: `repeat(auto-fill, minmax(${size}, 1fr))`
         }}>
         {data.map((item, index) => (
           <PreviewItem

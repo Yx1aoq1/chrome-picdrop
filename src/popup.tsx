@@ -4,6 +4,9 @@ import {
   ZoomInOutlined,
   ZoomOutOutlined
 } from "@ant-design/icons"
+
+import "./style.css"
+
 import type { UploadProps } from "antd"
 import {
   Alert,
@@ -65,35 +68,21 @@ function IndexPopup() {
   }
 
   return (
-    <div
-      style={{
-        width: 350,
-        padding: "0 8px 8px"
-      }}>
+    <div className="w-[350px] px-2 pb-2">
       <Tabs animated={false} defaultActiveKey="1" type="line">
         <Tabs.TabPane tab="上传" key="1">
           {configs.length > 0 ? (
             <div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  color: "#999",
-                  marginBottom: "12px",
-                  textAlign: "center"
-                }}>
+              <div className="text-xs text-[#999] mb-3 text-center">
                 上传配置有问题？
                 <a
                   target="_blank"
                   href="/options.html"
-                  style={{
-                    color: "#999",
-                    textDecoration: "underline",
-                    marginLeft: "4px"
-                  }}>
+                  className="text-[#999] underline ml-1">
                   去修改
                 </a>
               </div>
-              <div className="input-wapper">
+              <div className="flex gap-2 mb-2 items-center">
                 <Input placeholder="^/⌘ + v 剪贴板上传" />
                 <Checkbox onChange={(e) => setMd(e.target.checked)}>
                   markdown
@@ -124,7 +113,7 @@ function IndexPopup() {
           )}
         </Tabs.TabPane>
         <Tabs.TabPane
-          style={{ height: 250, overflow: "auto" }}
+          className="h-[250px] overflow-auto"
           tab="历史记录"
           key="2">
           <PreviewList data={imgList} />

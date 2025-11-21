@@ -48,14 +48,14 @@ export function ConfigList({
 
   return (
     <>
-      <div style={{ padding: "20px 16px" }}>
-        <Space direction="vertical" style={{ width: "100%" }}>
+      <div className="px-4 py-5">
+        <Space direction="vertical" className="w-full">
           <Title level={4}>{title}</Title>
           <Button
             type="primary"
             icon={<PlusOutlined />}
             onClick={onAddNew}
-            style={{ width: "100%" }}>
+            className="w-full">
             新增配置
           </Button>
         </Space>

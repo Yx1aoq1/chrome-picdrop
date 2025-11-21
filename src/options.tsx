@@ -1,3 +1,5 @@
+import "./style.css"
+
 import { Card, Layout, message, Tabs, Typography } from "antd"
 import { useEffect, useState } from "react"
 
@@ -92,11 +94,12 @@ function OptionsIndex() {
   }, [configs.length, isCreating])
 
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", height: "100vh" }}>
+    <div className="max-w-[1200px] mx-auto h-screen">
       <Layout>
         <Sider
           width={300}
-          style={{ background: "#fff", borderRight: "1px solid #f0f0f0" }}>
+          className="bg-white border-r border-gray-100"
+          theme="light">
           <ConfigList
             title="配置"
             configs={configs}
@@ -107,7 +110,7 @@ function OptionsIndex() {
             onReorder={handleReorder}
           />
         </Sider>
-        <Content style={{ padding: "20px" }}>
+        <Content className="p-5">
           <Card
             title={
               isCreating
@@ -131,7 +134,7 @@ function OptionsIndex() {
                 </Tabs.TabPane>
               </Tabs>
             ) : (
-              <div style={{ textAlign: "center", padding: "50px" }}>
+              <div className="text-center p-[50px]">
                 <Typography.Text type="secondary">
                   请从左侧列表选择一个配置进行编辑，或点击"新增配置"创建新的配置
                 </Typography.Text>

@@ -69,19 +69,18 @@ export function DraggableConfigItem({
     onDragEnd()
   }
 
-  const itemStyle = {
-    padding: "12px 16px",
-    cursor: "pointer",
-    backgroundColor: isSelected ? "#f6ffed" : "transparent",
-    borderLeft: isSelected ? "3px solid #52c41a" : "3px solid transparent",
-    borderTop: isDragOver ? "2px solid #1890ff" : "2px solid transparent",
-    transition: "all 0.2s ease"
-  }
-
   return (
     <List.Item
       draggable
-      style={itemStyle}
+      className={`px-4 py-3 cursor-pointer transition-all duration-200 ease-out ${
+        isSelected
+          ? "bg-[#f6ffed] border-l-[3px] border-[#52c41a]"
+          : "bg-transparent border-l-[3px] border-transparent"
+      } ${
+        isDragOver
+          ? "border-t-2 border-[#1890ff]"
+          : "border-t-2 border-transparent"
+      }`}
       onClick={onSelect}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
@@ -91,12 +90,7 @@ export function DraggableConfigItem({
       <List.Item.Meta
         avatar={<SettingOutlined />}
         title={
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}>
+          <div className="flex justify-between items-center">
             <span>{config.name}</span>
             <Popconfirm
               title="确认删除"
@@ -110,16 +104,7 @@ export function DraggableConfigItem({
                 size="small"
                 icon={<DeleteOutlined />}
                 danger
-                style={{
-                  opacity: 0.6,
-                  transition: "opacity 0.2s"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = "1"
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = "0.6"
-                }}
+                className="opacity-60 transition-opacity duration-200 hover:opacity-100"
                 onClick={(e) => e.stopPropagation()}
               />
             </Popconfirm>

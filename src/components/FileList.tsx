@@ -168,13 +168,8 @@ export function FileList({ config }: FileListProps) {
   }
 
   return (
-    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <div
-        style={{
-          marginBottom: 16,
-          display: "flex",
-          justifyContent: "flex-end"
-        }}>
+    <div className="h-full flex flex-col">
+      <div className="mb-4 flex justify-end">
         <Button
           icon={<ReloadOutlined />}
           onClick={fetchFiles}
@@ -184,7 +179,7 @@ export function FileList({ config }: FileListProps) {
       </div>
 
       {loading && files.length === 0 ? (
-        <div style={{ textAlign: "center", padding: "50px" }}>
+        <div className="text-center p-[50px]">
           <Spin size="large" tip="加载中..." />
         </div>
       ) : files.length === 0 ? (
