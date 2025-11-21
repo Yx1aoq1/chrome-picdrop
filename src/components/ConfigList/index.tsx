@@ -48,36 +48,45 @@ export function ConfigList({
 
   return (
     <>
-      <div className="px-4 py-5">
-        <Space direction="vertical" className="w-full">
-          <Title level={4}>{title}</Title>
+      <div className="px-5 py-4 sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-gray-100 shadow-sm">
+        <Space direction="vertical" className="w-full gap-3">
+          <div className="flex items-center justify-between">
+            <Title level={5} className="!mb-0 text-gray-800">
+              {title}
+            </Title>
+            <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+              {configs.length}
+            </span>
+          </div>
           <Button
             type="primary"
             icon={<PlusOutlined />}
             onClick={onAddNew}
-            className="w-full">
+            className="w-full shadow-none hover:shadow-md transition-all h-9">
             新增配置
           </Button>
         </Space>
       </div>
 
-      <List
-        dataSource={configs}
-        renderItem={(config, idx) => (
-          <DraggableConfigItem
-            key={`${config.name}-${idx}`}
-            config={config}
-            index={idx}
-            isSelected={selectedIdx === idx}
-            onSelect={() => onSelectConfig(idx)}
-            onDelete={(e) => onDeleteConfig(idx, e)}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          />
-        )}
-      />
+      <div className="py-2 px-2">
+        <List
+          dataSource={configs}
+          renderItem={(config, idx) => (
+            <DraggableConfigItem
+              key={`${config.name}-${idx}`}
+              config={config}
+              index={idx}
+              isSelected={selectedIdx === idx}
+              onSelect={() => onSelectConfig(idx)}
+              onDelete={(e) => onDeleteConfig(idx, e)}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+            />
+          )}
+        />
+      </div>
     </>
   )
 }

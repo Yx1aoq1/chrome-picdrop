@@ -94,11 +94,11 @@ function OptionsIndex() {
   }, [configs.length, isCreating])
 
   return (
-    <div className="max-w-[1200px] mx-auto h-screen">
-      <Layout>
+    <div className="w-full h-screen overflow-hidden flex flex-col bg-gray-50">
+      <Layout className="h-full">
         <Sider
-          width={300}
-          className="bg-white border-r border-gray-100"
+          width={280}
+          className="!bg-white border-r border-gray-200 h-full overflow-y-auto custom-scrollbar"
           theme="light">
           <ConfigList
             title="配置"
@@ -110,8 +110,9 @@ function OptionsIndex() {
             onReorder={handleReorder}
           />
         </Sider>
-        <Content className="p-5">
+        <Content className="p-5 h-full overflow-y-auto bg-[#f0f2f5]">
           <Card
+            className="min-h-full shadow-sm"
             title={
               isCreating
                 ? "新增配置"

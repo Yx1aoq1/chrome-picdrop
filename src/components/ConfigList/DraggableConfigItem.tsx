@@ -72,14 +72,14 @@ export function DraggableConfigItem({
   return (
     <List.Item
       draggable
-      className={`px-4 py-3 cursor-pointer transition-all duration-200 ease-out ${
+      className={`!px-4 !py-3 cursor-pointer transition-all duration-200 ease-out border-l-[3px] hover:bg-gray-50 ${
         isSelected
-          ? "bg-[#f6ffed] border-l-[3px] border-[#52c41a]"
-          : "bg-transparent border-l-[3px] border-transparent"
+          ? "bg-green-50 border-l-green-500"
+          : "bg-transparent border-l-transparent"
       } ${
         isDragOver
-          ? "border-t-2 border-[#1890ff]"
-          : "border-t-2 border-transparent"
+          ? "border-t-2 border-t-blue-500"
+          : "border-t-2 border-t-transparent"
       }`}
       onClick={onSelect}
       onDragStart={handleDragStart}
