@@ -1,19 +1,33 @@
-import { FileOutlined, InboxOutlined } from "@ant-design/icons"
+import {
+  CopyOutlined,
+  InboxOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined
+} from "@ant-design/icons"
 import type { UploadProps } from "antd"
-import { Alert, Button, Checkbox, Input, message, Tabs, Upload } from "antd"
+import {
+  Alert,
+  Button,
+  Checkbox,
+  Image,
+  Input,
+  message,
+  Space,
+  Tabs,
+  Upload
+} from "antd"
 import { useState } from "react"
 
 import { useStorage } from "@plasmohq/storage/hook"
 
+import { PreviewList } from "./components"
 import { createUploader, type UploadConfig } from "./uploader"
 
 const { Dragger } = Upload
 
 function IndexPopup() {
-  const [data, setData] = useState("")
   const [md, setMd] = useStorage("copyMd")
-  const [fileName, setFileName] = useStorage("fileName")
-  const [imgList, setimgList] = useStorage("fileList", [])
+  const [imgList, setImgList] = useStorage("fileList", [])
   const [configs, setConfigs] = useStorage<UploadConfig[]>("picdropConfigs", [])
 
   const props: UploadProps = {
@@ -29,14 +43,24 @@ function IndexPopup() {
         },
         onSuccess: (result) => {
           onSuccess(result)
+          const fileName = result.url.split("/").pop()
+          navigator.clipboard.writeText(
+            md ? `![${fileName}](${result.url})` : result.url
+          )
+          setImgList((prev) => [
+            {
+              url: result.url,
+              createTime: Date.now()
+            },
+            ...prev
+          ])
         },
         onError: (error) => {
           onError(error)
         }
       })
 
-      const taskId = uploader.upload(file as File)
-      uploader.cancel(taskId)
+      uploader.upload(file as File)
     }
   }
 
@@ -102,7 +126,9 @@ function IndexPopup() {
         <Tabs.TabPane
           style={{ height: 250, overflow: "auto" }}
           tab="历史记录"
-          key="2"></Tabs.TabPane>
+          key="2">
+          <PreviewList data={imgList} />
+        </Tabs.TabPane>
       </Tabs>
     </div>
   )

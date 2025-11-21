@@ -1,9 +1,9 @@
-import { Card, Layout, message, Typography } from "antd"
+import { Card, Layout, message, Tabs, Typography } from "antd"
 import { useEffect, useState } from "react"
 
 import { useStorage } from "@plasmohq/storage/hook"
 
-import { ConfigForm, ConfigList } from "./components"
+import { ConfigForm, ConfigList, FileList } from "./components"
 import type { UploadConfig } from "./uploader"
 
 const { Sider, Content } = Layout
@@ -93,7 +93,7 @@ function OptionsIndex() {
 
   return (
     <div style={{ maxWidth: 1200, margin: "0 auto", height: "100vh" }}>
-      <Layout style={{ height: "100%" }}>
+      <Layout>
         <Sider
           width={300}
           style={{ background: "#fff", borderRight: "1px solid #f0f0f0" }}>
@@ -107,7 +107,6 @@ function OptionsIndex() {
             onReorder={handleReorder}
           />
         </Sider>
-
         <Content style={{ padding: "20px" }}>
           <Card
             title={
@@ -116,13 +115,21 @@ function OptionsIndex() {
                 : selectedConfig
                   ? `编辑配置：${selectedConfig.name}`
                   : "请选择配置"
-            }
-            style={{ height: "100%" }}>
-            {isCreating || selectedConfig ? (
-              <ConfigForm
-                config={isCreating ? undefined : selectedConfig}
-                onSave={handleSaveConfig}
-              />
+            }>
+            {isCreating ? (
+              <ConfigForm onSave={handleSaveConfig} />
+            ) : selectedConfig ? (
+              <Tabs defaultActiveKey="1">
+                <Tabs.TabPane tab="配置详情" key="1">
+                  <ConfigForm
+                    config={selectedConfig}
+                    onSave={handleSaveConfig}
+                  />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab="文件列表" key="2">
+                  <FileList config={selectedConfig} />
+                </Tabs.TabPane>
+              </Tabs>
             ) : (
               <div style={{ textAlign: "center", padding: "50px" }}>
                 <Typography.Text type="secondary">
