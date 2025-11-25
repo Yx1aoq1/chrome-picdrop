@@ -1,0 +1,52 @@
+{
+  "currentState": "initial",
+  "stateHistory": [
+    {
+      "from": "initial",
+      "command": "project",
+      "timestamp": "2025-11-25T02:06:31.662Z",
+      "args": [
+        {
+          "workingDirectory": "/Users/yanxq/workspace/chrome-picdrop"
+        }
+      ]
+    },
+    {
+      "from": "initial",
+      "command": "remember",
+      "timestamp": "2025-11-25T02:09:15.857Z",
+      "args": [
+        {
+          "engrams": [
+            {
+              "content": "Refactored FileList component to use StoreProvider pattern with Service layer abstraction (S3FileService)",
+              "schema": "StoreProvider ServiceLayer Refactoring ReactContext S3",
+              "strength": 0.8,
+              "type": "PATTERN"
+            }
+          ],
+          "role": "frontend-developer"
+        }
+      ]
+    },
+    {
+      "from": "initial",
+      "command": "remember",
+      "timestamp": "2025-11-25T02:14:45.598Z",
+      "args": [
+        {
+          "engrams": [
+            {
+              "content": "Optimized FileList directory structure: extracted useFileListStore hook to separate file, consolidated exports in index.ts, and replaced hardcoded strings with UploadTypeConstant.",
+              "schema": "Refactoring DirectoryStructure Constants HooksSeparation FileList",
+              "strength": 0.8,
+              "type": "PATTERN"
+            }
+          ],
+          "role": "frontend-developer"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2025-11-25T02:14:45.603Z"
+}

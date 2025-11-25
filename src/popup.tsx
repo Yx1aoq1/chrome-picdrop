@@ -1,29 +1,14 @@
-import {
-  CopyOutlined,
-  InboxOutlined,
-  ZoomInOutlined,
-  ZoomOutOutlined
-} from "@ant-design/icons"
+import { InboxOutlined } from "@ant-design/icons"
 
 import "./style.css"
 
 import type { UploadProps } from "antd"
-import {
-  Alert,
-  Button,
-  Checkbox,
-  Image,
-  Input,
-  message,
-  Space,
-  Tabs,
-  Upload
-} from "antd"
-import { useState } from "react"
+import { Alert, Checkbox, Input, Tabs, Upload } from "antd"
 
 import { useStorage } from "@plasmohq/storage/hook"
 
 import { PreviewList } from "./components"
+import type { UploadItem } from "./components/PreviewList/Item"
 import { createUploader, type UploadConfig } from "./uploader"
 
 const { Dragger } = Upload
@@ -65,6 +50,10 @@ function IndexPopup() {
 
       uploader.upload(file as File)
     }
+  }
+
+  const handleDelete = (file: UploadItem) => {
+    setImgList((prev) => prev.filter((item) => item.url !== file.url))
   }
 
   return (
@@ -116,7 +105,7 @@ function IndexPopup() {
           className="h-[250px] overflow-auto"
           tab="历史记录"
           key="2">
-          <PreviewList data={imgList} />
+          <PreviewList data={imgList} onDelete={handleDelete} />
         </Tabs.TabPane>
       </Tabs>
     </div>
