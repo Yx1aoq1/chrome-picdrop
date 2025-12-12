@@ -1,6 +1,6 @@
 import { UploadTypeOptions } from "@/uploader"
-import { DeleteOutlined, SettingOutlined } from "@ant-design/icons"
-import { Button, List, Popconfirm } from "antd"
+import { CopyOutlined, DeleteOutlined, SettingOutlined } from "@ant-design/icons"
+import { Button, List, Popconfirm, Space } from "antd"
 import { useState } from "react"
 
 export interface ConfigItem {
@@ -15,6 +15,7 @@ export interface DraggableConfigItemProps {
   isSelected: boolean
   onSelect: () => void
   onDelete: (e: React.MouseEvent) => void
+  onCopy: (e: React.MouseEvent) => void
   onDragStart: (index: number) => void
   onDragEnd: () => void
   onDragOver: (e: React.DragEvent) => void
@@ -27,6 +28,7 @@ export function DraggableConfigItem({
   isSelected,
   onSelect,
   onDelete,
+  onCopy,
   onDragStart,
   onDragEnd,
   onDragOver,
@@ -92,22 +94,32 @@ export function DraggableConfigItem({
         title={
           <div className="flex justify-between items-center">
             <span>{config.name}</span>
-            <Popconfirm
-              title="确认删除"
-              description="确定要删除这个配置吗？"
-              onConfirm={onDelete}
-              onCancel={(e) => e?.stopPropagation()}
-              okText="确认"
-              cancelText="取消">
+            <Space size="small">
               <Button
                 type="text"
                 size="small"
-                icon={<DeleteOutlined />}
-                danger
+                icon={<CopyOutlined />}
                 className="opacity-60 transition-opacity duration-200 hover:opacity-100"
-                onClick={(e) => e.stopPropagation()}
+                onClick={onCopy}
+                title="复制配置"
               />
-            </Popconfirm>
+              <Popconfirm
+                title="确认删除"
+                description="确定要删除这个配置吗？"
+                onConfirm={onDelete}
+                onCancel={(e) => e?.stopPropagation()}
+                okText="确认"
+                cancelText="取消">
+                <Button
+                  type="text"
+                  size="small"
+                  icon={<DeleteOutlined />}
+                  danger
+                  className="opacity-60 transition-opacity duration-200 hover:opacity-100"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </Popconfirm>
+            </Space>
           </div>
         }
         description={

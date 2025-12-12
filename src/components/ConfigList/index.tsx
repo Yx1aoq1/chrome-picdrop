@@ -13,6 +13,7 @@ export interface ConfigListProps {
   onAddNew: () => void
   onSelectConfig: (idx: number) => void
   onDeleteConfig: (idx: number, e: React.MouseEvent) => void
+  onCopyConfig: (idx: number, e: React.MouseEvent) => void
   onReorder?: (fromIndex: number, toIndex: number) => void
 }
 
@@ -23,6 +24,7 @@ export function ConfigList({
   onAddNew,
   onSelectConfig,
   onDeleteConfig,
+  onCopyConfig,
   onReorder
 }: ConfigListProps) {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null)
@@ -79,6 +81,7 @@ export function ConfigList({
               isSelected={selectedIdx === idx}
               onSelect={() => onSelectConfig(idx)}
               onDelete={(e) => onDeleteConfig(idx, e)}
+              onCopy={(e) => onCopyConfig(idx, e)}
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
               onDragOver={handleDragOver}

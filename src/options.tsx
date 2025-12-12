@@ -62,6 +62,19 @@ function OptionsIndex() {
     message.success("配置删除成功！")
   }
 
+  const handleCopyConfig = (idx: number, e: React.MouseEvent) => {
+    e.stopPropagation() // 阻止触发选中事件
+
+    const originalConfig = configs[idx]
+    const copiedConfig: UploadConfig = {
+      ...originalConfig,
+      name: `${originalConfig.name}-copy`
+    }
+
+    setConfigs([...configs, copiedConfig])
+    message.success("配置复制成功！")
+  }
+
   const handleReorder = (fromIndex: number, toIndex: number) => {
     // 创建新的配置数组进行重排序
     const newConfigs = [...configs]
@@ -107,6 +120,7 @@ function OptionsIndex() {
             onAddNew={handleAddNew}
             onSelectConfig={handleSelectConfig}
             onDeleteConfig={handleDeleteConfig}
+            onCopyConfig={handleCopyConfig}
             onReorder={handleReorder}
           />
         </Sider>
